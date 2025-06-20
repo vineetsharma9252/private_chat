@@ -22,7 +22,7 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.BACKEND_URL}/signup`,
+        `${process.env.BACKEND_URL}/signup`,
         user
       );
 

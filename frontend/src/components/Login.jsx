@@ -20,7 +20,7 @@ function Login(props) {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.BACKEND_URL}/login`,
+        `${process.env.BACKEND_URL}/login`,
         user
       );
 
