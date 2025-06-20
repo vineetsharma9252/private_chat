@@ -16,7 +16,12 @@ mongoose
 // ✅ Setup Express
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+  })
+);
 
 // 🟢 HTTP server required for socket.io
 const server = http.createServer(app);
