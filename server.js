@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { Server } from "socket.io";
 import http from "http";
 import cors from "cors";
-import user from "./models/Users.js"; // your Mongoose model
+import user from "./backend/models/Users.js"; // your Mongoose model
 
 // ⚙️ Connect to MongoDB
 mongoose
