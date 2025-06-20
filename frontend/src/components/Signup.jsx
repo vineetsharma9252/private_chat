@@ -21,7 +21,10 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/signup", user);
+      const response = await axios.post(
+        `${import.meta.env.BACKEND_URL}/signup`,
+        user
+      );
 
       console.log("Response:", response);
 

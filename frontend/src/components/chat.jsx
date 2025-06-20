@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import "../styles/ChatRoom.css";
 
-const socket = io("http://localhost:5000");
+const socket = io(`${import.meta.env.BACKEND_URL}`);
 
 export default function ChatRoom() {
   const { roomId } = useParams(); // comes from /chat/:roomId

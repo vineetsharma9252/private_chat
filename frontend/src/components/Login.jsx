@@ -19,7 +19,10 @@ function Login(props) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/login", user);
+      const response = await axios.post(
+        `${import.meta.env.BACKEND_URL}/login`,
+        user
+      );
 
       console.log("reponse is " + response.status);
       if (response.status === 401) {

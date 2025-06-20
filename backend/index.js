@@ -7,9 +7,7 @@ import user from "./models/Users.js"; // your Mongoose model
 
 // ⚙️ Connect to MongoDB
 mongoose
-  .connect(
-    `${import.meta.env.MONGOOSE_CONNECTION_STRING}`
-  )
+  .connect(`${process.env.MONGOOSE_CONNECTION_STRING}`)
   .then(() => console.log("✅ Database connected successfully"))
   .catch((error) => console.log("❌ DB connection error: " + error));
 
@@ -29,7 +27,7 @@ const server = http.createServer(app);
 // ✅ Initialize socket.io
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // frontend port
+    origin: "*", // frontend port
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -91,5 +89,5 @@ app.post("/login", async (req, res) => {
 // ✅ Start server with both API & sockets
 const PORT = 5000;
 server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on ${PORT}`);
 });
