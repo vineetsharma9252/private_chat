@@ -4,6 +4,12 @@ import { Server } from "socket.io";
 import http from "http";
 import cors from "cors";
 import user from "./models/Users.js"; // your Mongoose model
+import dotenv from "dotenv";
+dotenv.config(); // loads variables from .env into process.env
+
+// console.log(process.env.PORT); // 3000
+
+console.log(process.env.MONGOOSE_CONNECTION_STRING);
 
 // ⚙️ Connect to MongoDB
 mongoose
