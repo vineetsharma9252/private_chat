@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 import { Server } from "socket.io";
 import http from "http";
 import cors from "cors";
-import user from "./backend/models/Users.js"; // your Mongoose model
+import user from "./models/Users.js"; // your Mongoose model
 
 // ⚙️ Connect to MongoDB
 mongoose
   .connect(
-    "mongodb+srv://VineetSharma:supersaiyan1000@privatechat.nokitha.mongodb.net/private_chat?retryWrites=true&w=majority&appName=privatechat"
+    `${import.meta.env.MONGOOSE_CONNECTION_STRING}`
   )
   .then(() => console.log("✅ Database connected successfully"))
   .catch((error) => console.log("❌ DB connection error: " + error));
