@@ -32,8 +32,6 @@ function Login(props) {
         navigate("/dashboard");
       }
     } catch (error) {
-      alert(`${import.meta.env.BACKEND_URL}`);
-      alert(`${process.env.BACKEND_URL}`);
       alert("Something went wrong ");
       console.log("something went wrong ...");
     }
