@@ -22,7 +22,7 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        "https://private-chat-3.onrender.com//signup",
+        "https://private-chat-3.onrender.com/signup",
         user
       );
 

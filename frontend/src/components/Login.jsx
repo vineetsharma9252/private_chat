@@ -20,7 +20,7 @@ function Login(props) {
 
     try {
       const response = await axios.post(
-        "https://private-chat-3.onrender.com//login",
+        "https://private-chat-3.onrender.com/login",
         user
       );
 
