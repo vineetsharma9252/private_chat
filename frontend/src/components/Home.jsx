@@ -6,11 +6,11 @@ function Home(props) {
     <>
       <div className="home-container">
         <div className="instruction-container" style={{}}>
-          <h3>Instruction</h3>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
-          molestiae perferendis praesentium expedita totam vero ab unde eius!
-          Obcaecati id repudiandae commodi molestiae perspiciatis soluta
-          distinctio cumque, animi iusto aperiam.
+          <h3>Instructions</h3>
+          Welcome to Private Chat! To get started, please sign up for a new
+          account or log in if you already have one. After logging in, you can
+          securely chat privately with other users. Your conversations are
+          confidential and easy to manage from your dashboard.
         </div>
         <div className="auth-container">
           <div className="auth-btn">

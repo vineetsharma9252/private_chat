@@ -50,10 +50,11 @@ export default function Signup() {
       <div className="inner-container">
         <h1>Signup</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex libero
-          quaerat doloribus aspernatur voluptates nesciunt repellat esse? Saepe
-          reprehenderit amet animi magni. Accusamus saepe numquam facilis
-          assumenda nihil, veritatis sapiente?
+          <p>
+            Please fill in all the fields below to create your account. After
+            signing up, you can log in and start a private chat with other users
+            securely. Your information is kept confidential. Enjoy chatting!
+          </p>
         </p>
         <form className="input-container" method="post" onSubmit={handleSubmit}>
           <input

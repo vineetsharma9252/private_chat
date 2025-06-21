@@ -43,10 +43,10 @@ function Login(props) {
       <div className="inner-container">
         <h1>Login</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex libero
-          quaerat doloribus aspernatur voluptates nesciunt repellat esse? Saepe
-          reprehenderit amet animi magni. Accusamus saepe numquam facilis
-          assumenda nihil, veritatis sapiente?
+          Enter your username and password to log in. After logging in, you can
+          access your dashboard and start private chats with other users. If you
+          don't have an account, please sign up first. Your credentials are kept
+          secure.
         </p>
         <form className="input-container" method="post" onSubmit={handleSubmit}>
           <input
