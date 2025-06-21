@@ -18,7 +18,7 @@ export default function Dashboard() {
     const token = localStorage.getItem("token");
 
     axios
-      .get("https://private-chat-joib.vercel.app/protected", {
+      .get("https://private-chat-3.onrender.com/protected", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
