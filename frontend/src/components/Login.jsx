@@ -24,17 +24,18 @@ function Login(props) {
         user
       );
 
+      // Store token only if login is successful
       localStorage.setItem("token", response.data.token);
-      console.log("reponse is " + response.status);
-      if (response.status === 401) {
-        alert("unable to find the user . Try again");
-      } else if (response.status === 200) {
-        alert("login successfull");
-        navigate("/dashboard");
-      }
+      alert("Login successful");
+      navigate("/dashboard");
     } catch (error) {
-      alert("Something went wrong " + error);
-      console.log("something went wrong ...");
+      // If error response exists and it's a 401
+      if (error.response && error.response.status === 401) {
+        alert("Invalid username or password. Try again.");
+      } else {
+        alert("Something went wrong: " + error.message);
+        console.error(error);
+      }
     }
   };
   return (
