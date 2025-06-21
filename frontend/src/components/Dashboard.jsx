@@ -14,7 +14,22 @@ export default function Dashboard() {
     username: "",
     roomId: "",
   });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
+    axios
+      .get("https://private-chat-joib.vercel.app/protected", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setData(res.data.message); // or whatever data you expect
+      })
+      .catch((err) => {
+        console.error(err.response?.data?.error);
+      });
+  }, []);
   const generateRoomId = () => {
     return Math.random().toString(36).substring(2, 8);
   };
@@ -49,8 +64,8 @@ export default function Dashboard() {
         <div className="instruction-container">
           <h3>Instructions</h3>
           <p>
-            Enter your username and a room name to create a new room. Or, join an
-            existing room by entering its ID and your name. Start chatting
+            Enter your username and a room name to create a new room. Or, join
+            an existing room by entering its ID and your name. Start chatting
             privately in real time!
           </p>
         </div>

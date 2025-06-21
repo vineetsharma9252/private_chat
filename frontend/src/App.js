@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import ChatRoom from "./components/chat";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <ProtectedRoute>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </ProtectedRoute>
           <Route path="/chat/:roomId" element={<ChatRoom />} />
         </Routes>
       </BrowserRouter>

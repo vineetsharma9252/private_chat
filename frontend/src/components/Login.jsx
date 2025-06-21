@@ -24,6 +24,7 @@ function Login(props) {
         user
       );
 
+      localStorage.setItem("token", response.data.token);
       console.log("reponse is " + response.status);
       if (response.status === 401) {
         alert("unable to find the user . Try again");

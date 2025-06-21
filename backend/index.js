@@ -5,6 +5,9 @@ import http from "http";
 import cors from "cors";
 import user from "./models/Users.js"; // your Mongoose model
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+
 dotenv.config(); // loads variables from .env into process.env
 
 // console.log(process.env.PORT); // 3000
@@ -61,7 +64,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// ✅ Express Routes
 app.post("/signup", async (req, res) => {
   const { username, password, email, phone } = req.body;
   if (!username || !password || !email) {
@@ -73,23 +75,54 @@ app.post("/signup", async (req, res) => {
     return res.status(409).json({ error: "Email already exists" });
   }
 
-  const newUser = new user({ username, password, email, phone });
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const newUser = new user({ username, password: hashedPassword, email, phone });
   await newUser.save();
+
   res.status(201).json({ message: "User registered", user: newUser._id });
 });
+
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
-    const findUser = await user.findOne({ username, password });
-    if (findUser) {
-      res.status(200).json({ message: "Login successful", user: findUser._id });
-    } else {
-      res.status(401).json({ error: "Invalid username or password" });
+    const findUser = await user.findOne({ username });
+    if (!findUser) {
+      return res.status(401).json({ error: "Invalid username or password" });
     }
+
+    const isMatch = await bcrypt.compare(password, findUser.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Invalid username or password" });
+    }
+
+    const token = jwt.sign(
+      { id: findUser._id, username: findUser.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({ message: "Login successful", token });
   } catch (error) {
-    res.status(500).json({ error: "Server error", message: error });
+    res.status(500).json({ error: "Server error", message: error.message });
   }
+});
+
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader?.split(" ")[1];
+
+  if (!token) return res.status(403).json({ error: "Access denied" });
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.status(401).json({ error: "Invalid token" });
+    req.user = user;
+    next();
+  });
+};
+
+app.get("/protected", verifyToken, (req, res) => {
+  res.json({ message: "You accessed a protected route!", user: req.user });
 });
 
 // ✅ Start server with both API & sockets
