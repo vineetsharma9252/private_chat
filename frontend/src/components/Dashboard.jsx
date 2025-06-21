@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../styles/Dashboard.css";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
+import axios from "axios";
 export default function Dashboard() {
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ export default function Dashboard() {
         },
       })
       .then((res) => {
-        setData(res.data.message); // or whatever data you expect
+        console.log(""); // or whatever data you expect
       })
       .catch((err) => {
         console.error(err.response?.data?.error);
