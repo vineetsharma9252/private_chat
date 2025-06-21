@@ -32,7 +32,7 @@ function Login(props) {
         navigate("/dashboard");
       }
     } catch (error) {
-      alert("Something went wrong ");
+      alert("Something went wrong " + error);
       console.log("something went wrong ...");
     }
   };
