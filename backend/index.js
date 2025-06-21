@@ -22,7 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "*",
+    origin: `${process.env.FROTEND_URL}`,
     methods: ["GET", "POST"],
   })
 );
@@ -33,7 +33,7 @@ const server = http.createServer(app);
 // ✅ Initialize socket.io
 const io = new Server(server, {
   cors: {
-    origin: "*", // frontend port
+    origin: `${process.env.FROTEND_URL}`, // frontend port
     methods: ["GET", "POST"],
     credentials: true,
   },
