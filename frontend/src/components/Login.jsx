@@ -20,7 +20,7 @@ function Login(props) {
 
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/login`,
+        "https://private-chat-joib.vercel.app/login",
         user
       );
 

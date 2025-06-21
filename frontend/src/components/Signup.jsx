@@ -22,7 +22,7 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/signup`,
+        "https://private-chat-joib.vercel.app/signup",
         user
       );
 
