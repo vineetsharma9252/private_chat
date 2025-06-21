@@ -16,9 +16,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <ProtectedRoute>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </ProtectedRoute>
+
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
           <Route path="/chat/:roomId" element={<ChatRoom />} />
         </Routes>
       </BrowserRouter>
