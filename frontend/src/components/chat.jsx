@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import "../styles/ChatRoom.css";
 
-const socket = io("https://private-chat-3.onrender.com/");
+const socket = io("https://private-chat-3.onrender.com");
 
 export default function ChatRoom() {
   const { roomId } = useParams(); // comes from /chat/:roomId
